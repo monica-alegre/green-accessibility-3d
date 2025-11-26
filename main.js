@@ -419,7 +419,7 @@ map.on('load', async () => {
     if (!f) return hideTip();
     const walkTime = f.properties?.walk_time ?? '—';
     const walkDist = f.properties?.walk_distance ? `${f.properties.walk_distance.toLocaleString()} m` : '—';
-    const icon = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>';
+    const icon = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="19" r="2" fill="none"></circle><circle cx="18" cy="5" r="2" fill="none"></circle><path d="M12 19 L16.5 19 C18.433 19 20 17.433 20 15.5 C20 13.567 18.433 12 16.5 12 L8.5 12 C6.567 12 5 10.433 5 8.5 C5 6.567 6.567 5 8.5 5 L12 5"></path></svg>';
     showTip(e.point.x, e.point.y, `<div style="display:flex;align-items:center;gap:10px;">${icon}<div><b>Route</b><br><span style="font-size:11px;opacity:0.7;">Time: ${walkTime} min<br>Distance: ${walkDist}</span></div></div>`, 'route');
   });
   map.on('mouseleave', 'routes-line', () => {
