@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Green Accessibility 3D - Barcelona | Walking Distance to Parks Visualization</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Interactive 3D visualization of walking accessibility to green areas in Barcelona. Explore how easily residents can access parks and green spaces from their homes." />
+  <meta name="keywords" content="Barcelona, green spaces, accessibility, 3D visualization, urban planning, parks, walking distance, GIS, MapLibre GL JS" />
+  <meta name="author" content="Monica Alegre" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://monica-alegre.github.io/green-accessibility-3d/" />
+  <meta property="og:title" content="Green Accessibility 3D - Barcelona" />
+  <meta property="og:description" content="Interactive 3D visualization of walking accessibility to green areas in Barcelona. Parcels are extruded by population and colored by walking time to nearest parks." />
+  <meta property="og:image" content="https://monica-alegre.github.io/green-accessibility-3d/thumbnail.jpg" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://monica-alegre.github.io/green-accessibility-3d/" />
+  <meta property="twitter:title" content="Green Accessibility 3D – Barcelona" />
+  <meta property="twitter:description" content="Interactive 3D visualization of walking accessibility to green areas in Barcelona." />
+  <meta property="twitter:image" content="https://monica-alegre.github.io/green-accessibility-3d/thumbnail.jpg" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="apple-touch-icon" href="favicon.png" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Styles and Scripts -->
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.css" rel="stylesheet" />
+  <script src="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.js"></script>
+  <script type="module" src="main.js"></script>
+</head>
+<body>
+  <div id="map"></div>
+
+  <!-- Title -->
+  <div id="title">
+    <h1>Green Accessibility 3D - Barcelona</h1>
+  </div>
+
+  <div id="ui">
+    <div id="slider-controls">
+      <button id="playButton" aria-label="Play animation">▶</button>
+      <div style="flex: 1;">
+        <label for="timeSlider" style="display:flex;align-items:center;gap:6px;margin-bottom:4px;font-size:11px;opacity:0.9;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+          </svg>
+          Walk time: <span id="timeVal">42</span> min
+        </label>
+        <input id="timeSlider" type="range" min="1" max="42" value="42" step="1" />
+      </div>
+    </div>
+  </div>
+
+  <div id="tooltip" class="tooltip" style="display:none;"></div>
+
+  <div id="legends">
+    <!-- Population Legend -->
+    <div class="legend-panel">
+      <div class="legend-title">Population</div>
+      <div class="legend-items">
+        <div class="legend-item">
+          <div class="legend-bar" style="height: 50px; background: #4A148C;"></div>
+          <span>High</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-bar" style="height: 25px; background: #8E24AA;"></div>
+          <span>Medium</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-bar" style="height: 10px; background: #CE93D8;"></div>
+          <span>Low</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Walk Time Legend -->
+    <div class="legend-panel">
+      <div class="legend-title">Walk Time</div>
+      <div class="legend-gradient">
+        <div class="gradient-bar"></div>
+        <div class="gradient-labels">
+          <span>0 min<br>(Close)</span>
+          <span>20+ min<br>(Far)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Icon Buttons -->
+    <div class="icon-buttons">
+      <button class="icon-button" id="userGuideButton" aria-label="User guide">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+          <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+        </svg>
+      </button>
+      <button class="icon-button" id="aboutButton" aria-label="About the project">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="16" x2="12" y2="12"></line>
+          <line x1="12" y1="8" x2="12.01" y2="8"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+</body>
+</html>
